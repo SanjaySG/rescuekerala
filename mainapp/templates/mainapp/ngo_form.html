@@ -5,9 +5,9 @@
   <div class="text-right">
     <a href="{% url 'ngo_download_view' %}">Download NGO list</a><br>
     <form style="margin-right: 0;" action="{% url 'ngo_download_view' %}" method="get" name="district">{% csrf_token %}
-      NGO list by District {{ form.district}}
-      <input type="submit" value="Download" />
-  </form>
+      NGO list by District: {{ form.district}}
+      <input style="margin-left: 1%;" type="submit" value="Download" />
+    </form>
   </div>
 
 <p class="text-center">
