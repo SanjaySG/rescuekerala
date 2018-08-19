@@ -65,7 +65,7 @@ class RegisterVolunteer(CreateView):
 
 class RegisterNGO(CreateView):
     model = NGO
-    fields = ['organisation', 'organisation_type','organisation_address', 'name', 'phone', 'description', 'area',
+    fields = ['organisation', 'organisation_type', 'district', 'organisation_address', 'name', 'phone', 'description', 'area',
               'location']
     success_url = '/reg_success'
 
