@@ -183,7 +183,7 @@ class RegisterNGOViewTests(TestCase):
         response = client.post(self.url, post_data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'mainapp/ngo_form.html')
-        req_fields = ['organisation', 'organisation_address',
+        req_fields = ['district','organisation', 'organisation_address',
                       'organisation_type', 'description', 'area', 'location', 'name']
         for field in req_fields:
             self.assertFormError(response, 'form', field,
@@ -199,6 +199,7 @@ class RegisterNGOViewTests(TestCase):
         post_data = {
             'name': 'Rag Sagar',
             'phone': '8893845901',
+            'district':'ekm',
             'organisation': 'smc',
             'area': 'plw',
             'organisation_address': 'Near mosque',
@@ -212,6 +213,7 @@ class RegisterNGOViewTests(TestCase):
         ngo = NGO.objects.last()
         self.assertEqual(ngo.name, 'Rag Sagar')
         self.assertEqual(ngo.phone, '8893845901')
+        self.assertEqual(ngo.district, 'ekm')
         self.assertEqual(ngo.organisation, 'smc')
         self.assertEqual(ngo.area, 'plw')
         self.assertEqual(ngo.organisation_address, 'Near mosque')
