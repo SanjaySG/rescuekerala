@@ -2,6 +2,14 @@
 {% load bootstrap3 %}
 
 {% block content %}
+<!--Navigation Breadcrumbs-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="../relief_camps/">Relief Camps</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Relief Camp Requirements</li>
+  </ol>
+</nav>
 
 {% block css %}
 <style>
@@ -12,11 +20,11 @@
 
 {% endblock %}
 <div class="text-center">
-  <h3>Camp details</h3>
+  <h3>Relief Camp Requirements</h3>
 </div>
 
-<form action="" method="get">
-    {{ filter.form.as_p }}
+<form action="" method="get" class="simple-form">
+    {% bootstrap_form filter.form bound_css_class=False %}
     <button class="btn btn-default" type="submit">Show Relief Camps</button>
 </form>
 <div class="">
@@ -49,7 +57,7 @@
       <td>
         {{item.village}}
       </td>
-      <td>
+      <td class="phone-links">
         {{item.contacts|linebreaks}}
       </td>
       <td>
@@ -109,4 +117,15 @@
 
 
 </div>
+<script>
+  window.onload = function() {
+    $('.phone-links').each(function () {
+      var content = $(this).html();
+      // Convert 10 digit numbers to links
+      links = content.replace(/[0-9 ]{10,15}/g, "<a href=\"tel:$&\">$&</a>");
+      $(this).html(links);
+    })
+  }
+
+</script>
 {% endblock %}
